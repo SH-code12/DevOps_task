@@ -4,39 +4,51 @@ A simple web application show current time using flask
 
 ## Table of content
 
-[Folder Structure](#folder-structure)
+- [Folder Structure](#folder-structure)
 
-[Prerequisites](#prerequisites)
+- [Description](#description)
 
-[Instullation](#instullation)
+- [Prerequisites](#prerequisites)
 
-[Install Dependencies](#install-dependencies)
+- [Instullation](#instullation)
 
-[Testing](#testing)
+- [Install Dependencies](#install-dependencies)
 
+- [Testing](#testing)
 
-[Usage](#usage)
+- [Usage](#usage)
 
+- [Build Docker Image](#build-the-docker-image)
 
-[Build Docker Image](#build-the-docker-image)
+- [Run Docker Contaniner](#run-the-docker-container)
 
-[Run Docker Contaniner](#run-the-docker-container)
-
-[Run app with nginx](#Run-app-with-an-nginx-webserver)
-
+- [Run app with nginx](#Run-app-with-an-nginx-webserver)
 
 
 ## Folder Structure
-.
-├── docker-compose.yml
+
+```
+├── docker-compose.yml:
 ├── Dockerfile
 ├── nginx.conf
 ├── ReadMe.md
 ├── requirements.txt
 ├── task.py
-├── templates
-│   └── index.html
+├── templates/
+│ └── index.html
 └── test_task.py
+```
+## Description
+
+- **`docker-compose.yml`**: Docker Compose configuration file.
+- **`Dockerfile`**: Dockerfile for building the Flask application image.
+- **`nginx.conf`**: Nginx configuration file.
+- **`ReadMe.md`**: Markdown file providing project information (this file).
+- **`requirements.txt`**: List of Python dependencies for the Flask application.
+- **`task.py`**: Main Python file containing the Flask application code.
+- **`templates/`**: Directory containing HTML templates for the Flask application.
+- **`test_task.py`**: Python script with tests for the Flask application.
+
 
 ## Prerequisites
 Before running the application, ensure you have the following installed:

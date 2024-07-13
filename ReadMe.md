@@ -3,20 +3,46 @@
 A simple web application show current time using flask
 
 ## Table of content
+
+[Folder Structure](#folder-structure)
+
 [Prerequisites](#prerequisites)
 
 [Instullation](#instullation)
 
 [Install Dependencies](#install-dependencies)
 
+[Testing](#testing)
+
+
 [Usage](#usage)
 
-[Testing](#testing)
+
+[Build Docker Image](#build-the-docker-image)
+
+[Run Docker Contaniner](#run-the-docker-container)
+
+[Run app with nginx](#Run-app-with-an-nginx-webserver)
+
+
+
+## Folder Structure
+.
+├── docker-compose.yml
+├── Dockerfile
+├── nginx.conf
+├── ReadMe.md
+├── requirements.txt
+├── task.py
+├── templates
+│   └── index.html
+└── test_task.py
 
 ## Prerequisites
 Before running the application, ensure you have the following installed:
    -  Python 3.11
    -  Flask 2.0.2 (install via pip install Flask)
+   - Docker
 
 ## Instullation
 To get started with the Flask Application, follow these steps:
@@ -39,6 +65,16 @@ To get started with the Flask Application, follow these steps:
     ```bash
     source venv/bin/activate
     ```
+5. install Docker
+    ```bash
+    sudo apt-get update
+    sudo apt install docker.io docker-compose docker-buildx
+    ```
+6. test docker 
+    ```bash
+    sudo groupadd docker
+    docker run hello-world
+    ```    
 
 
 ## Install Dependencies:
@@ -50,12 +86,6 @@ To get started with the Flask Application, follow these steps:
     ```bash
     pip install -r requirements.txt
     ```
-## Usage
-7. Run the application
-    ```bash
-    python3 task.py
-    ```
-The application will be accessible at The application will be accessible a http://127.0.0.1:5000
 
 ## Testing
 
@@ -63,5 +93,34 @@ The application will be accessible at The application will be accessible a http:
     ```bash
     python test_task.py
     ```
+
+## Usage
+7. Run the application
+    ```bash
+    python3 task.py
+    ```
+The application will be accessible at The application will be accessible a http://127.0.0.1:5000
+
+
+## Build the Docker Image
+
+```bash
+docker build -t shahdelnassag/dev-task . 
+```
+## Run the Docker Container
+```bash
+ocker run -p5000:5000 shahdelnassag/dev-task
+```
+The application will be accessible at http://127.0.0.1:5000
+
+link Image: [DockerHub](https://hub.docker.com/layers/shahdelnassag/dev-task/v1.0.0/images/sha256-1a4347be4b2fcb04dba97460d6e9d972fbe483e046163cff6a05f0764ca1139a?context=repo)
+
+## Run app with an nginx webserver:
+```bash
+docker-compose up --build
+```
+
+The app will running on : http://127.0.0.1:5000 OR http://172.18.0.2:5000
+
 
 

@@ -13,10 +13,10 @@ jobs:
             - name: checkout Python 3.11.6
               uses: actions/checkout@v2
 
-            - name: Set Up Python 3.11.6
+            - name: Set Up Python 3.11
               uses: actions/setup-python@v5
               with:
-                python-version: Python 3.11.6
+                python-version: '3.11.6'
                 cach: 'pip'
 
             - name: Install Dependencies

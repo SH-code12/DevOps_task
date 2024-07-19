@@ -1,3 +1,4 @@
+[![CI With GitHub Actions](https://github.com/SH-code12/DevOps_task/actions/workflows/action.yml/badge.svg)](https://github.com/SH-code12/DevOps_task/actions/workflows/action.yml)
 # Show Current Time
 
 A simple web application show current time using flask

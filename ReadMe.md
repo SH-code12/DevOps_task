@@ -32,14 +32,16 @@ A simple web application show current time using flask
 ## Folder Structure
 
 ```
-├── docker-compose.yml:
+├── docker-compose.yml
 ├── Dockerfile
 ├── nginx.conf
 ├── ReadMe.md
 ├── requirements.txt
+├── static
+│   └── clockimage.jpg
 ├── task.py
-├── templates/
-│ └── index.html
+├── templates
+│   └── index.html
 └── test_task.py
 ```
 ## Description

@@ -51,6 +51,7 @@ A simple web application show current time using flask
 - **`nginx.conf`**: Nginx configuration file.
 - **`ReadMe.md`**: Markdown file providing project information (this file).
 - **`requirements.txt`**: List of Python dependencies for the Flask application.
+- **`static/`**:Directory containing Image for the Flask application
 - **`task.py`**: Main Python file containing the Flask application code.
 - **`templates/`**: Directory containing HTML templates for the Flask application.
 - **`test_task.py`**: Python script with tests for the Flask application.

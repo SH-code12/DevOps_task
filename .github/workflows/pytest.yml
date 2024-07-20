@@ -4,7 +4,7 @@ on:
     push:
         branches: [main]
         paths-ignore:
-          - ReadMe.md
+          - /home/shahd/Desktop/Dev_task/ReadMe.md
 
 jobs:
     linter-test:

@@ -3,8 +3,8 @@ name: Python test
 on:
     push:
         branches: [main]
-
-    
+        paths-ignore:
+          - ReadMe.md
 
 jobs:
     linter-test:

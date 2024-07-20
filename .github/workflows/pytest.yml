@@ -12,8 +12,8 @@ jobs:
 
 
         steps:
-            - name: checkout Python 3.11.6
-              uses: actions/checkout@v2
+            - name: checkout Python 3.11
+              uses: actions/checkout@v4
 
             - name: Set Up Python 3.11
               uses: actions/setup-python@v5

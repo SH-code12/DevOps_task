@@ -2,15 +2,18 @@ pipeline {
     agent any
 
     stages {
-        stage('Test') {
+        stage('Clone repository') {
             steps {
-                sh '''
-                python3 -m venv venv
-                . venv/bin/activate
-                pip install -r requirements.txt
-                pyhton test_task.py
-                '''
+                git 'https://github.com/SH-code12/DevOps_task'
             }
         }
-    }    
+        stage('Build Docker image') {
+            steps {
+                script {
+                    // Assuming Dockerfile is in the root of the repository
+                    sh 'docker build -t shahdelnassag/jenkins .'
+                }
+            }
+        }
+    }
 }

@@ -21,7 +21,7 @@ pipeline {
                     sh 'sudo docker stop simple-container || true'
                     sh 'sudo docker rm simple-container || true'
                     // Run Docker container
-                    sh 'sudo docker run -d --name simple-container -p 5000:80 shahdelnassag/jenkins_pipeline'
+                    sh 'sudo docker run -d --name test-container -p 5000:80 shahdelnassag/jenkins_pipeline'
                 }
             }
         }

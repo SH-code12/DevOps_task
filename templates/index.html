@@ -30,9 +30,21 @@
 <body>
     <h1>First Task using Flask</h1>
     <div>
-        <h2>Current Now : {{time}}</h2>
+        <h2 id="time">Current Now : {{time}}</h2>
 
     </div>
+
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const formattedTime = `Day [ ${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()} ] ---- Hour[ ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')} ]`;
+            document.getElementById('time').innerText = formattedTime;
+        }
+
+        setInterval(updateTime, 1000); 
+        window.onload = updateTime; 
+    </script>
 
     
 </body>

@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                    sh 'sudo docker build -t shahdelnassag/jenkins_pipeline .'
+                    sh 'docker build -t shahdelnassag/jenkins_pipeline .'
                 }
             }
         }
@@ -18,10 +18,10 @@ pipeline {
             steps {
                 script {
                     // Stop and remove any existing container with the same name
-                    sh 'sudo docker stop simple-container || true'
-                    sh 'sudo docker rm simple-container || true'
+                    sh 'docker stop test-container || true'
+                    sh 'docker rm test-container || true'
                     // Run Docker container
-                    sh 'sudo docker run -d --name test-container -p 5000:80 shahdelnassag/jenkins_pipeline'
+                    sh 'docker run -d --name test-container -p 5000:80 shahdelnassag/jenkins_pipeline'
                 }
             }
         }

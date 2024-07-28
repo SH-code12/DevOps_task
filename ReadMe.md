@@ -28,12 +28,15 @@ A simple web application show current time using flask
 
 - [Run app with nginx](#Run-app-with-an-nginx-webserver)
 
+- [Jenkins server in an EC2 instance](#Jenkins-server-in-an-EC2-instance)
+
 
 ## Folder Structure
 
 ```
 ├── docker-compose.yml
 ├── Dockerfile
+├── Jenkinsfile
 ├── nginx.conf
 ├── ReadMe.md
 ├── requirements.txt
@@ -48,6 +51,7 @@ A simple web application show current time using flask
 
 - **`docker-compose.yml`**: Docker Compose configuration file.
 - **`Dockerfile`**: Dockerfile for building the Flask application image.
+- **`Jenkinsfile`**:The Jenkins pipeline for continuous integration and delivery (CI/CD).
 - **`nginx.conf`**: Nginx configuration file.
 - **`ReadMe.md`**: Markdown file providing project information (this file).
 - **`requirements.txt`**: List of Python dependencies for the Flask application.
@@ -141,5 +145,17 @@ docker-compose up --build
 
 The app will running on : http://127.0.0.1:5000 OR http://172.18.0.2:5000
 
+## Jenkins server in an EC2 instance
+This pipeline ensures that your application is built, packaged into a Docker container, and then deployed, allowing continuous integration and delivery.
+```
+
+1. Clone the repository from GitHub.
+
+2. Build a Docker image from the cloned repository.
+
+3. Stop and remove any existing Docker container named test-container.
+
+4. Run a new Docker container named test-container from the built Docker image, exposing it on port 5000.
+```
 
 

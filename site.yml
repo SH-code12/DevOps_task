@@ -1,0 +1,16 @@
+---
+- name: Simple Ansible playbook
+  hosts: localhost
+  tasks:
+    - name: Pull Docker image from DockerHub
+      community.docker.docker_image:
+        name: shahdelnassag/dev-task:v1.0.0
+        source: pull
+
+    - name: Run Docker container
+      community.docker.docker_container:
+        name: ansible-container
+        image: shahdelnassag/dev-task:v1.0.0
+        state: started
+        ports:
+          - "5000:80"

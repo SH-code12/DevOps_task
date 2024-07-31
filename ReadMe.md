@@ -30,6 +30,8 @@ A simple web application show current time using flask
 
 - [Jenkins server in an EC2 instance](#Jenkins-server-in-an-EC2-instance)
 
+- [Ansible Playbook](#ansible-playbook)
+
 
 ## Folder Structure
 
@@ -43,6 +45,7 @@ A simple web application show current time using flask
 ├── static
 │   └── clockimage.jpg
 ├── task.py
+├── site.yml
 ├── templates
 │   └── index.html
 └── test_task.py
@@ -57,15 +60,17 @@ A simple web application show current time using flask
 - **`requirements.txt`**: List of Python dependencies for the Flask application.
 - **`static/`**:Directory containing Image for the Flask application
 - **`task.py`**: Main Python file containing the Flask application code.
+- **`site.yml`**:This is an Ansible playbook file. It contains instructions for deploying and managing my app.
 - **`templates/`**: Directory containing HTML templates for the Flask application.
 - **`test_task.py`**: Python script with tests for the Flask application.
-
 
 ## Prerequisites
 Before running the application, ensure you have the following installed:
    -  Python 3.11
    -  Flask 2.0.2 (install via pip install Flask)
-   - Docker
+   -  Docker
+   -  Jenkins
+   -  Ansible
 
 ## Instullation
 To get started with the Flask Application, follow these steps:
@@ -109,6 +114,32 @@ To get started with the Flask Application, follow these steps:
     ```bash
     pip install -r requirements.txt
     ```
+7. install Jenkins
+    ```bash
+    sudo apt update
+    sudo apt upgrade
+    sudo apt install openjdk-17-jre
+    wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+    
+    # Test java installed
+
+    java --version
+
+    sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+    sudo apt update
+    sudo apt install jenkins
+
+    # test jenkins insalled
+
+    jenkins --version
+    ```
+8. install ansible
+    ```bash
+    sudo apt update
+    sudo apt install ansible
+    ansible-galaxy collection install community.docker
+    ```
+
 
 ## Testing
 
@@ -147,15 +178,51 @@ The app will running on : http://127.0.0.1:5000 OR http://172.18.0.2:5000
 
 ## Jenkins server in an EC2 instance
 This pipeline ensures that your application is built, packaged into a Docker container, and then deployed, allowing continuous integration and delivery.
-```
 
-1. Clone the repository from GitHub.
+1. Create AWS account & Sign In
+    ```bash
+    https://aws.amazon.com/
+   ```
+2. Create EC2 instence
 
-2. Build a Docker image from the cloned repository.
+3. Security Groups Rules
+    ```bash
+    1. SSH : 22
+    2. HTTP: 80
+    3. Custom rule: 8080
+   ```
 
-3. Stop and remove any existing Docker container named test-container.
+4. Create Key_Pair
 
-4. Run a new Docker container named test-container from the built Docker image, exposing it on port 5000.
-```
+    Download the .pem file
+
+5. Connect SSH client:
+    ```bash
+    sudo chmod 400 ./labsuser.pem
+
+    ssh -i ./labsuser.pem ubuntu@ec2-3-87-37-229.compute-1.amazonaws.com
+    ```
+
+6. Run Jenkins on :
+    ```bash
+    ec2-3-87-37-229.compute-1.amazonaws.com:8080
+    ```
+7. Run command to get password
+    ```bash
+    sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+    ```
+    
+8. Create a job
+
+
+## Ansible Playbook
+
+- Run file (site.yml)
+    ```bash
+    ansible-playbook site.yml
+    ```
+- Screenshot for the successful run
+
+    ![ansible](https://github.com/user-attachments/assets/98906173-1cf4-4529-a091-e748a12718ff)
 
 

@@ -1,0 +1,56 @@
+---
+- name: Install Docker and run container
+  hosts: ec2_instance
+  become: yes
+  tasks:
+    - name: Update apt packages
+      apt:
+        update_cache: yes
+
+    - name: Install Docker dependencies
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Update apt packages after adding Docker repo
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Start and enable Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Pull Docker image from DockerHub
+      community.docker.docker_image:
+        name: shahdelnassag/dev-task
+        tag: v1.0.0
+        source: pull
+
+    - name: Run Docker container
+      community.docker.docker_container:
+        name: ansible-container
+        image: shahdelnassag/dev-task:v1.0.0
+        state: started
+        ports:
+          - "8080:80"

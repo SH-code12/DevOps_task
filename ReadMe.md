@@ -32,10 +32,16 @@ A simple web application show current time using flask
 
 - [Ansible Playbook](#ansible-playbook)
 
+- [Terraform](#terraform)
+
 
 ## Folder Structure
 
 ```
+├── ansible
+│   ├── ansible.cfg
+│   ├── hosts.ini
+│   └── site.yml
 ├── docker-compose.yml
 ├── Dockerfile
 ├── Jenkinsfile
@@ -45,13 +51,19 @@ A simple web application show current time using flask
 ├── static
 │   └── clockimage.jpg
 ├── task.py
-├── site.yml
 ├── templates
 │   └── index.html
+├── Terraform
+│   ├── main.tf
 └── test_task.py
 ```
 ## Description
 
+- **`ansible.cfg`**:Configuration file for Ansible.
+
+- **`hosts.ini`**: Inventory file listing the hosts managed by Ansible.
+
+- **`site.yml`**:Ansible playbook for deploying and managing the application
 - **`docker-compose.yml`**: Docker Compose configuration file.
 - **`Dockerfile`**: Dockerfile for building the Flask application image.
 - **`Jenkinsfile`**:The Jenkins pipeline for continuous integration and delivery (CI/CD).
@@ -60,8 +72,8 @@ A simple web application show current time using flask
 - **`requirements.txt`**: List of Python dependencies for the Flask application.
 - **`static/`**:Directory containing Image for the Flask application
 - **`task.py`**: Main Python file containing the Flask application code.
-- **`site.yml`**:This is an Ansible playbook file. It contains instructions for deploying and managing my app.
 - **`templates/`**: Directory containing HTML templates for the Flask application.
+- **`main.tf`**:Main Terraform configuration file.
 - **`test_task.py`**: Python script with tests for the Flask application.
 
 ## Prerequisites
@@ -71,6 +83,7 @@ Before running the application, ensure you have the following installed:
    -  Docker
    -  Jenkins
    -  Ansible
+   - Terraform
 
 ## Instullation
 To get started with the Flask Application, follow these steps:
@@ -139,6 +152,12 @@ To get started with the Flask Application, follow these steps:
     sudo apt install ansible
     ansible-galaxy collection install community.docker
     ```
+9. install terraform
+```bash
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform
+```
 
 
 ## Testing
@@ -215,14 +234,47 @@ This pipeline ensures that your application is built, packaged into a Docker con
 8. Create a job
 
 
-## Ansible Playbook
+## Ansible Playbook (localhost):
 
 - Run file (site.yml)
-    ```bash
+```bash
     ansible-playbook site.yml
-    ```
+```
 - Screenshot for the successful run
 
     ![ansible](https://github.com/user-attachments/assets/98906173-1cf4-4529-a091-e748a12718ff)
+
+## Terraform:
+
+- Create instance using terraform
+```bash
+cd Terraform
+
+terraform init
+
+terraform plan
+
+terraform apply
+```
+
+- Connect to instance
+```bash
+cd ansible 
+
+sudo chmod 400 ./labsuser.pem
+
+ssh -i ./labsuser.pem ubuntu@ec2-3-88-11-121.compute-1.amazonaws.com
+```
+
+- Run an ansible playbook (EC2 instance):
+```bash
+ansible-playbook site.yml
+```
+- Screenshot for the successful run
+  ![ans_terr_1](https://github.com/user-attachments/assets/be7ef057-dd5a-4549-88f2-89b4753be5fe)
+  
+  ![ans_terr_2](https://github.com/user-attachments/assets/9b21f131-abdc-4124-96f5-eb3deb7e36f1)
+
+
 
 

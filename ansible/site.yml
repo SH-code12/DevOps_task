@@ -1,6 +1,6 @@
 ---
 - name: Install Docker and run container
-  hosts: ec2_instance
+  hosts: EC2_instance
   become: yes
   tasks:
     - name: Update apt packages

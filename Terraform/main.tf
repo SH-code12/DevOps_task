@@ -12,7 +12,7 @@ resource "aws_instance" "web_server" {
   vpc_security_group_ids = [aws_security_group.web_server_sg.id]  # Associate the security group
 
   tags = {
-    Name = "EC2_instance_SP2"
+    Name = "EC2_SP2"
   }
 }
 

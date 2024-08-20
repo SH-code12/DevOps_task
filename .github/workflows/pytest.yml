@@ -39,7 +39,7 @@ jobs:
             - name: Build and Push Docker image
               env:
                 REPOSITORY: pythontest
-                IMAGE_TAG: v1.0.0
+                IMAGE_TAG: v2.0.0
               run: |
                 docker build -t ${{secrets.DOCKERHUB_USERNAME}}/$REPOSITORY:$IMAGE_TAG .
                 docker push ${{secrets.DOCKERHUB_USERNAME}}/$REPOSITORY:$IMAGE_TAG

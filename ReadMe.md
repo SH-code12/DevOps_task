@@ -234,13 +234,13 @@ This pipeline ensures that your application is built, packaged into a Docker con
 8. Create a job
 
 
-## Ansible Playbook (localhost):
+## Ansible Playbook
 
 - Run file (site.yml)
 ```bash
-    ansible-playbook site.yml
+    ansible-playbook -i hosts.ini site.yml
 ```
-- Screenshot for the successful run
+- Screenshot for the successful run (local host)
 
     ![ansible](https://github.com/user-attachments/assets/98906173-1cf4-4529-a091-e748a12718ff)
 
@@ -268,7 +268,7 @@ ssh -i ./labsuser.pem ubuntu@ec2-3-88-11-121.compute-1.amazonaws.com
 
 - Run an ansible playbook (EC2 instance):
 ```bash
-ansible-playbook site.yml
+    ansible-playbook -i hosts.ini site.yml
 ```
 - Screenshot for the successful run
   ![ans_terr_1](https://github.com/user-attachments/assets/be7ef057-dd5a-4549-88f2-89b4753be5fe)

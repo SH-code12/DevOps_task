@@ -5,20 +5,21 @@ provider "aws" {
 
 # Define the EC2 Instance resource
 resource "aws_instance" "web_server" {
+  #  count         = 3
   ami           = "ami-04a81a99f5ec58529"
   instance_type = "t2.micro"
   key_name      = "vockey"
   vpc_security_group_ids = [aws_security_group.web_server_sg.id]  # Associate the security group
 
   tags = {
-    Name = "EC2 Terraform"
+    Name = "Sprint2_EC2"
   }
 }
 
 # Define the Security Group resource
 resource "aws_security_group" "web_server_sg" {
-  name        = "web_server_security_group_new"
-  description = "Security group for web server"
+  name        = "EC2_instance_security_group_v2"
+  description = "Security group for EC2 instance"
 
   ingress {
     from_port   = 80

@@ -1,6 +1,6 @@
 ---
 - name: Install Docker and run container
-  hosts: EC2_instance
+  hosts: EC2_instance_Sprint_2
   become: yes
   tasks:
     - name: Update apt packages
@@ -49,8 +49,8 @@
 
     - name: Run Docker container
       community.docker.docker_container:
-        name: ansible-container
+        name: ansible-container-v1
         image: shahdelnassag/dev-task:v1.0.0
         state: started
         ports:
-          - "8080:80"
+          - "8081:80"

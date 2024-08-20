@@ -49,7 +49,7 @@
 
     - name: Run Docker container
       community.docker.docker_container:
-        name: ansible-container-v1
+        name: ansible-container
         image: shahdelnassag/dev-task:v1.0.0
         state: started
         ports:

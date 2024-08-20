@@ -18,7 +18,7 @@ resource "aws_instance" "web_server" {
 
 # Define the Security Group resource
 resource "aws_security_group" "web_server_sg" {
-  name        = "EC2_instance_security_group_v3"
+  name        = "EC2_instance_security_group_v5"
   description = "Security group for EC2 instance"
 
   ingress {

@@ -275,6 +275,11 @@ ssh -i ./labsuser.pem ubuntu@ec2-3-88-11-121.compute-1.amazonaws.com
   
   ![ans_terr_2](https://github.com/user-attachments/assets/9b21f131-abdc-4124-96f5-eb3deb7e36f1)
 
+- Run app against EC2 instance 
+  Link ---> http://ec2-18-207-161-212.compute-1.amazonaws.com/
+
+  ![Run_app_against_EC2_instance](https://github.com/user-attachments/assets/1612a449-146d-47f9-9778-c90779a4be83)
+
 
 
 

@@ -44,13 +44,16 @@
     - name: Pull Docker image from DockerHub
       community.docker.docker_image:
         name: shahdelnassag/dev-task
-        tag: v1.0.0
+        tag: v1.1
         source: pull
 
     - name: Run Docker container
       community.docker.docker_container:
-        name: ansible-container
-        image: shahdelnassag/dev-task:v1.0.0
+        name: flask-container
+        image: shahdelnassag/dev-task:v1.1
         state: started
+        restart_policy: always
         ports:
-          - "8081:80"
+          - "80:5000"  # Expose port 80 on the host to port 5000 in the container
+        env:
+          FLASK_ENV: production

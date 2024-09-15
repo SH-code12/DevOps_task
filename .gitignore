@@ -168,3 +168,11 @@ terraform.tfstate
 terraform.tfstate.*
 terraform.tfvars
 *.tfplan
+
+## Helm 
+# Helm files
+/Helm/mychart/.helmignore
+/Helm/mychart/charts/
+/Helm/mychart/templates/*.tpl
+/Helm/mychart/values.yaml
+/Helm/mychart/.helmrelease.yaml

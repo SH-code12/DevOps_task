@@ -335,27 +335,36 @@ This pipeline ensures that your application is built, packaged into a Docker con
 
 ### Deployment My application:
 
-1. Create the namespace:
+1. Start Minkube:
+    ```bash
+    # Ensure Docker Running
+    sudo systemctl start docker
+
+    # start minikube
+    minikube start
+    ```
+
+2. Create the namespace:
 ```bash
     kubectl apply -f namespace.yml
 ```
 
-2. Apply the LimitRange:
+3. Apply the LimitRange:
 ```bash
     kubectl apply -f limits.yml
 ```
 
-3. Deploy the application:
+4. Deploy the application:
 ```bash
     kubectl apply -f deployment.yml
 ```
 
-4. Create the service:
+5. Create the service:
 ```bash
     kubectl apply -f service.yml
 ```
 
-5. Set up ingress:
+6. Set up ingress:
 ```bash
     kubectl apply -f ingress.yml
 ```

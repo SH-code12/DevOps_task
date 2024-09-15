@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: LimitRange
+
+metadata:
+  name: time-lr
+  namespace: time-nsp
+
+spec:
+  limits:
+    - type: Container
+      max:
+        cpu: 800m
+        memory: 1Gi
+      min:
+        cpu: 200m
+        memory: 500Mi

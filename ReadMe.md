@@ -34,6 +34,8 @@ A simple web application show current time using flask
 
 - [Terraform](#terraform)
 
+- [Kubernetes](#Kubernetes)
+
 
 ## Folder Structure
 
@@ -45,6 +47,13 @@ A simple web application show current time using flask
 ├── docker-compose.yml
 ├── Dockerfile
 ├── Jenkinsfile
+├── Kubernetes
+│   ├── deployment.yml
+│   ├── ingress.yml
+│   ├── limits.yml
+│   ├── namespace.yml
+│   ├── pod.yml
+│   └── service.yml
 ├── nginx.conf
 ├── ReadMe.md
 ├── requirements.txt
@@ -59,21 +68,31 @@ A simple web application show current time using flask
 ```
 ## Description
 
-- **`ansible.cfg`**:Configuration file for Ansible.
+- **`ansible/`**: Contains Ansible configuration and playbooks for deploying and managing infrastructure.
 
-- **`hosts.ini`**: Inventory file listing the hosts managed by Ansible.
+  - **`ansible.cfg`**:Configuration file for Ansible.
 
-- **`site.yml`**:Ansible playbook for deploying and managing the application
+  - **`hosts.ini`**: Inventory file listing the hosts managed by Ansible.
+
+  - **`site.yml`**:Ansible playbook for deploying and managing the application
 - **`docker-compose.yml`**: Docker Compose configuration file.
 - **`Dockerfile`**: Dockerfile for building the Flask application image.
 - **`Jenkinsfile`**:The Jenkins pipeline for continuous integration and delivery (CI/CD).
+- **`Kubernetes/`**: Contains Kubernetes manifests for deploying and managing resources in a Kubernetes cluster.
+  - **`deployment.yml`**: Deployment configuration for the application.
+  - **`ingress.yml`**: Ingress rules for managing external access to the services.
+  - **`limits.yml`**: Resource limits and requests for Kubernetes pods.
+  - **`namespace.yml`**: Kubernetes namespace configuration.
+  - **`pod.yml`**: Pod configuration for the application.
+
+  - **`service.yml`**: Service configuration for exposing the application.
 - **`nginx.conf`**: Nginx configuration file.
 - **`ReadMe.md`**: Markdown file providing project information (this file).
 - **`requirements.txt`**: List of Python dependencies for the Flask application.
 - **`static/`**:Directory containing Image for the Flask application
 - **`task.py`**: Main Python file containing the Flask application code.
 - **`templates/`**: Directory containing HTML templates for the Flask application.
-- **`main.tf`**:Main Terraform configuration file.
+  - **`main.tf`**:Main Terraform configuration file.
 - **`test_task.py`**: Python script with tests for the Flask application.
 
 ## Prerequisites
@@ -83,7 +102,9 @@ Before running the application, ensure you have the following installed:
    -  Docker
    -  Jenkins
    -  Ansible
-   - Terraform
+   -  Terraform
+   -  minikube
+   -  kubectl
 
 ## Instullation
 To get started with the Flask Application, follow these steps:
@@ -110,13 +131,57 @@ To get started with the Flask Application, follow these steps:
     ```bash
     sudo apt-get update
     sudo apt install docker.io docker-compose docker-buildx
-    ```
-6. test docker 
-    ```bash
+
+    # Test docker 
     sudo groupadd docker
     docker run hello-world
-    ```    
+    ```  
+6. install ansible
+    ```bash
+    sudo apt update
+    sudo apt install ansible
+    ansible-galaxy collection install community.docker
+    ```
+7. install terraform
+```bash
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform
+```
+8. Install minikube
+```bash
+# Install on linux
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 
+sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
+
+# start your cluster
+    minikube start
+
+# check version
+    minikube version
+## Result ##
+minikube version: v1.34.0
+commit: 210b148df93a80eb872ecbeb7e35281b3c582c61
+
+```
+9. Install kubectl 
+```bash
+# Install on linux
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+# check version
+kubectl version --client
+## Result ##
+Client Version: v1.31.0
+Kustomize Version: v5.4.2
+```
 
 ## Install Dependencies:
 5. install flask
@@ -146,19 +211,6 @@ To get started with the Flask Application, follow these steps:
 
     jenkins --version
     ```
-8. install ansible
-    ```bash
-    sudo apt update
-    sudo apt install ansible
-    ansible-galaxy collection install community.docker
-    ```
-9. install terraform
-```bash
-wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-sudo apt update && sudo apt install terraform
-```
-
 
 ## Testing
 
@@ -279,6 +331,45 @@ ssh -i ./labsuser.pem ubuntu@ec2-3-88-11-121.compute-1.amazonaws.com
   Link ---> http://ec2-18-207-161-212.compute-1.amazonaws.com/
 
   ![Run_app_against_EC2_instance](https://github.com/user-attachments/assets/1612a449-146d-47f9-9778-c90779a4be83)
+
+## Kubernetes:
+
+### Deployment My application:
+
+1. Create the namespace:
+```bash
+    kubectl apply -f namespace.yml
+```
+
+2. Apply the LimitRange:
+```bash
+    kubectl apply -f limits.yml
+```
+
+3. Deploy the application:
+```bash
+    kubectl apply -f deployment.yml
+```
+
+4. Create the service:
+```bash
+    kubectl apply -f service.yml
+```
+
+5. Set up ingress:
+```bash
+    kubectl apply -f ingress.yml
+```
+- Screenshot for K8s_Dashboard:
+  ![k8s_dashbord](https://github.com/user-attachments/assets/8cfc52f9-9702-41b6-a280-5132e6c4ca6e)
+
+### Access the app via service:
+```bash
+    minikube service time-svc 
+```
+#### Run app on link --> http://192.168.49.2:30090
+![K8s_app](https://github.com/user-attachments/assets/be16f31f-0516-4df8-890b-04ea450068e9)
+
 
 
 

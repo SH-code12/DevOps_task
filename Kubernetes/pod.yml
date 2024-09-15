@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: time-pod
+  labels:
+    name: time-pod
+spec:
+  containers:
+  - name: time-con-pod
+    image: shahdelnassag/dev-task:v1.1
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 5000

@@ -23,10 +23,10 @@ pipeline {
             steps {
                 script {
                     // Stop and remove any existing container with the same name
-                    sh 'docker stop jenkins-container || true'
-                    sh 'docker rm jenkins-container || true'
+                    sh 'docker stop test-jenkins-container || true'
+                    sh 'docker rm test-jenkins-container || true'
                     // Run Docker container
-                    sh 'docker run -d --name jenkins-container -p 5000:80 shahdelnassag/jenkins_pipeline'
+                    sh 'docker run -d --name test-jenkins-container -p 5000:80 shahdelnassag/jenkins_pipeline'
                 }
             }
         }
@@ -36,9 +36,9 @@ pipeline {
                     // Log in to Docker Hub using token
                     sh 'echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin'
                     // Tag the Docker image
-                    sh 'docker tag shahdelnassag/jenkins_pipeline shahdelnassag/jenkins_pipeline:latest'
+                    sh 'docker tag shahdelnassag/jenkins_pipeline shahdelnassag/jenkins_pipeline:v1.0.0'
                     // Push the Docker image
-                    sh 'docker push shahdelnassag/jenkins_pipeline:latest'
+                    sh 'docker push shahdelnassag/jenkins_pipeline:v1.0.0'
                 }
             }
         }

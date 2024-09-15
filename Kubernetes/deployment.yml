@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: time-dep
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: timeapp
+  template:
+    metadata:
+      labels:
+        app: timeapp # lebal for pod that will deployment deploy it 
+    spec:
+      containers:
+      - name: dep-container
+        image: shahdelnassag/dev-task:v1.1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000

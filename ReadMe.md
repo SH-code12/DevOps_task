@@ -143,45 +143,44 @@ To get started with the Flask Application, follow these steps:
     ansible-galaxy collection install community.docker
     ```
 7. install terraform
-```bash
-wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-sudo apt update && sudo apt install terraform
-```
+    ```bash
+    wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    sudo apt update && sudo apt install terraform
+    ```
 8. Install minikube
-```bash
-# Install on linux
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    ```bash
+    # Install on linux
+    curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 
-sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
+    sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
 
-# start your cluster
-    minikube start
+    # start your cluster
+        minikube start
 
-# check version
-    minikube version
-## Result ##
-minikube version: v1.34.0
-commit: 210b148df93a80eb872ecbeb7e35281b3c582c61
-
-```
+    # check version
+        minikube version
+    ## Result ##
+    minikube version: v1.34.0
+    commit: 210b148df93a80eb872ecbeb7e35281b3c582c61
+    ```
 9. Install kubectl 
-```bash
-# Install on linux
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    ```bash
+    # Install on linux
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
 
-echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+    echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
 
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+    sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
-# check version
-kubectl version --client
-## Result ##
-Client Version: v1.31.0
-Kustomize Version: v5.4.2
-```
+    # check version
+    kubectl version --client
+    ## Result ##
+    Client Version: v1.31.0
+    Kustomize Version: v5.4.2
+    ```
 
 ## Install Dependencies:
 5. install flask
@@ -299,29 +298,29 @@ This pipeline ensures that your application is built, packaged into a Docker con
 ## Terraform:
 
 - Create instance using terraform
-```bash
-cd Terraform
+    ```bash
+    cd Terraform
 
-terraform init
+    terraform init
 
-terraform plan
+    terraform plan
 
-terraform apply
-```
+    terraform apply
+    ```
 
 - Connect to instance
-```bash
-cd ansible 
+    ```bash
+    cd ansible 
 
-sudo chmod 400 ./labsuser.pem
+    sudo chmod 400 ./labsuser.pem
 
-ssh -i ./labsuser.pem ubuntu@ec2-3-88-11-121.compute-1.amazonaws.com
-```
+    ssh -i ./labsuser.pem ubuntu@ec2-3-88-11-121.compute-1.amazonaws.com
+    ```
 
 - Run an ansible playbook (EC2 instance):
-```bash
+    ```bash
     ansible-playbook -i hosts.ini site.yml
-```
+    ```
 - Screenshot for the successful run
   ![ans_terr_1](https://github.com/user-attachments/assets/be7ef057-dd5a-4549-88f2-89b4753be5fe)
   

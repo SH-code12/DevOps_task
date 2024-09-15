@@ -174,5 +174,6 @@ terraform.tfvars
 /Helm/mychart/.helmignore
 /Helm/mychart/charts/
 /Helm/mychart/templates/*.tpl
-/Helm/mychart/values.yaml
 /Helm/mychart/.helmrelease.yaml
+/Helm/mychart/templates/tests/
+

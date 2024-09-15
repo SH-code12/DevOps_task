@@ -36,6 +36,7 @@ A simple web application show current time using flask
 
 - [Kubernetes](#Kubernetes)
 
+- [Helm](#Helm)
 
 ## Folder Structure
 
@@ -105,6 +106,7 @@ Before running the application, ensure you have the following installed:
    -  Terraform
    -  minikube
    -  kubectl
+   -  Helm
 
 ## Instullation
 To get started with the Flask Application, follow these steps:
@@ -180,6 +182,11 @@ To get started with the Flask Application, follow these steps:
     ## Result ##
     Client Version: v1.31.0
     Kustomize Version: v5.4.2
+    ```
+
+10. Install Helm:
+    ```bash
+    curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash 
     ```
 
 ## Install Dependencies:
@@ -346,27 +353,27 @@ This pipeline ensures that your application is built, packaged into a Docker con
 
 2. Create the namespace:
 ```bash
-    kubectl apply -f namespace.yml
+    kubectl apply -f namespace.yaml
 ```
 
 3. Apply the LimitRange:
 ```bash
-    kubectl apply -f limits.yml
+    kubectl apply -f limits.yaml
 ```
 
 4. Deploy the application:
 ```bash
-    kubectl apply -f deployment.yml
+    kubectl apply -f deployment.yaml
 ```
 
 5. Create the service:
 ```bash
-    kubectl apply -f service.yml
+    kubectl apply -f service.yaml
 ```
 
 6. Set up ingress:
 ```bash
-    kubectl apply -f ingress.yml
+    kubectl apply -f ingress.yaml
 ```
 - Screenshot for K8s_Dashboard:
   ![k8s_dashbord](https://github.com/user-attachments/assets/8cfc52f9-9702-41b6-a280-5132e6c4ca6e)
@@ -377,6 +384,41 @@ This pipeline ensures that your application is built, packaged into a Docker con
 ```
 #### Run app on link --> http://192.168.49.2:30090
 ![K8s_app](https://github.com/user-attachments/assets/be16f31f-0516-4df8-890b-04ea450068e9)
+
+#### CleanUp
+    ```bash
+    kubectl delete all --all -n time-nsp
+    ```
+## Helm
+
+1. Create helm chart
+    ```bash
+    helm create mychart
+    ```
+
+2. Deploy helm chart
+    ```bash
+    # First Deploying
+    helm install timeapplication mychart --namespace time-nsp
+
+    # Upgrade the Release
+    helm upgrade timeapplication mychart --namespace time-nsp
+    ```
+
+3. Check the Updated Services:
+   ```bash
+   kubectl get services -n time-nsp
+
+   ## Result ##
+   # NAME                  TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+   # timeapplication-svc   NodePort   10.103.128.202   <none>        5000:30091/TCP   3m35s
+   ```
+
+4. Access the application via ---> http://192.168.49.2:30091
+    ```bash
+    minikube service timeaaplication-svc -n time-nsp
+    ```
+     ![helm-app](https://github.com/user-attachments/assets/264a7e07-1107-4f02-bead-7e51171a6d27)
 
 
 

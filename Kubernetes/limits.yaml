@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timeapplication-dep
+  namespace: time-nsp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: timeapp
+  template:
+    metadata:
+      labels:
+        app: timeapp
+    spec:
+      containers:
+      - name: dep-container
+        image: shahdelnassag/dev-task:v1.1
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"

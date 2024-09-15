@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-dep
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.app.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app.name }} # lebal for pod that will deployment deploy it 
+    spec:
+      containers:
+      - name: {{ .Values.container.name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        resources:
+          limits:
+            memory: "{{ .Values.resources.memory }}"
+            cpu: "{{ .Values.resources.cpu }}"
+        ports:
+        - containerPort: {{ .Values.container.port }}

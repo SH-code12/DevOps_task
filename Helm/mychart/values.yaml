@@ -1,0 +1,25 @@
+replicaCount: 3
+
+image:
+  repository: shahdelnassag/dev-task
+  tag: v1.1
+
+app:
+  name: timeapp
+
+container:
+  name: dep-container
+  port: 5000
+
+resources:
+  memory: "500Mi"
+  cpu: "500m"
+
+service:
+  port: 5000
+  nodePort: 30091
+
+
+
+
+

@@ -38,6 +38,8 @@ A simple web application show current time using flask
 
 - [Helm](#Helm)
 
+- [Monitoring](#Monitoring)
+
 ## Folder Structure
 
 ```
@@ -420,7 +422,45 @@ This pipeline ensures that your application is built, packaged into a Docker con
     ```
      ![helm-app](https://github.com/user-attachments/assets/264a7e07-1107-4f02-bead-7e51171a6d27)
 
+## Monitoring
+
+1. Start Service
+    ```bash
+    cd monitoring 
+
+    docker compose up
+    ```
+
+    ![mon_doc_compose](https://github.com/user-attachments/assets/1f4d5b85-1c4a-40da-a667-7894b08fc0dd)
+
+- Run grafana on prometheus ---> **`localhost:9090`** 
+ - Check the status of running the app on ---> **`localhost:9090/targets?search=`**
 
 
+   ![promethous_target](https://github.com/user-attachments/assets/0c34006a-d55e-46b6-a5a6-ec09bbfb6ffc)
+   
+- Run grafana on ---> **`localhost:3000`**
 
+  ![granfa](https://github.com/user-attachments/assets/ca93a89d-0f24-43b6-92ee-4bf52b0c64ee)
 
+- Run Application on --> **`localhost:8081`**
+
+   ![app_monitoring](https://github.com/user-attachments/assets/42d18d1d-27ad-4dff-ac37-1154d648cab1)
+
+### Show logs as Grafana Dashboard  using Data Source 
+
+1. Prometheus:
+
+    <p float="left">
+    <img src="https://github.com/user-attachments/assets/09052af9-d452-4f03-9af2-e049ae41ff3a" width="45%" />
+    <img src="https://github.com/user-attachments/assets/0d102074-0394-4fe0-8344-04cbd7517a22" width="45%" />
+    </p>
+
+2. loki:
+
+    ![loki_dashboard](https://github.com/user-attachments/assets/c91823a9-e53f-447a-87ff-01f4150c2518)
+
+#### Stop the service:
+```bash
+    docker compose down
+```

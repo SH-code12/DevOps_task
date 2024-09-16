@@ -177,3 +177,6 @@ terraform.tfvars
 /Helm/mychart/.helmrelease.yaml
 /Helm/mychart/templates/tests/
 
+## monitoring
+
+/monitoring/provisioning/

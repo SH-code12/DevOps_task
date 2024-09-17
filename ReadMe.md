@@ -442,9 +442,9 @@ This pipeline ensures that your application is built, packaged into a Docker con
 ![K8s_app](https://github.com/user-attachments/assets/be16f31f-0516-4df8-890b-04ea450068e9)
 
 #### CleanUp
-    ```bash
+```bash
     kubectl delete all --all -n time-nsp
-    ```
+```
 ## Helm
 
 1. Create helm chart

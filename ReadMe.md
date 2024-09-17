@@ -296,7 +296,7 @@ docker build -t shahdelnassag/dev-task .
 ```
 ## Run the Docker Container
 ```bash
-ocker run -p5000:5000 shahdelnassag/dev-task
+docker run -p5000:5000 shahdelnassag/dev-task
 ```
 The application will be accessible at http://127.0.0.1:5000
 

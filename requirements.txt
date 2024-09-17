@@ -1,7 +1,19 @@
+# pip freeze > requirements.txt
+
+ansible==10.2.0
+ansible-core==2.17.2
 blinker==1.8.2
+cffi==1.17.0
 click==8.1.7
+cryptography==43.0.0
 Flask==3.0.3
 itsdangerous==2.2.0
 Jinja2==3.1.4
 MarkupSafe==2.1.5
+packaging==24.1
+prometheus_client==0.20.0
+prometheus_flask_exporter==0.23.1
+pycparser==2.22
+PyYAML==6.0.2
+resolvelib==1.0.1
 Werkzeug==3.0.3

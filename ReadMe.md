@@ -43,20 +43,38 @@ A simple web application show current time using flask
 ## Folder Structure
 
 ```
+.
 ├── ansible
 │   ├── ansible.cfg
 │   ├── hosts.ini
 │   └── site.yml
 ├── docker-compose.yml
 ├── Dockerfile
+├── .github
+│   └── workflows
+│       ├── action.yml
+│       └── pytest.yml
+├── Helm
+│   └── mychart
+│       ├── Chart.yaml
+│       ├── templates
+│       │   ├── deployment.yaml
+│       │   └── service.yaml
+│       └── values.yaml
 ├── Jenkinsfile
 ├── Kubernetes
-│   ├── deployment.yml
-│   ├── ingress.yml
-│   ├── limits.yml
-│   ├── namespace.yml
-│   ├── pod.yml
-│   └── service.yml
+│   ├── deployment.yaml
+│   ├── ingress.yaml
+│   ├── limits.yaml
+│   ├── namespace.yaml
+│   ├── pod.yaml
+│   └── service.yaml
+├── monitoring
+│   ├── config
+│   │   ├── loki-config.yaml
+│   │   ├── prometheus-config.yaml
+│   │   └── promtail-config.yaml
+│   └── docker-compose.yaml
 ├── nginx.conf
 ├── ReadMe.md
 ├── requirements.txt
@@ -66,7 +84,7 @@ A simple web application show current time using flask
 ├── templates
 │   └── index.html
 ├── Terraform
-│   ├── main.tf
+│   └── main.tf
 └── test_task.py
 ```
 ## Description
@@ -78,9 +96,24 @@ A simple web application show current time using flask
   - **`hosts.ini`**: Inventory file listing the hosts managed by Ansible.
 
   - **`site.yml`**:Ansible playbook for deploying and managing the application
+
 - **`docker-compose.yml`**: Docker Compose configuration file.
+
 - **`Dockerfile`**: Dockerfile for building the Flask application image.
+
+- **`.github/workflows/`**: GitHub Actions workflow configurations for CI/CD.
+  - **`action.yml`**: Action for automating tasks.
+  - **`pytest.yml`**: Pytest configuration for testing.
+
+- **`Helm/mychart/`**: Contains Helm chart for managing Kubernetes deployments.
+  - **`Chart.yaml`**: Metadata for the Helm chart.
+  - **`templates/`**: Kubernetes resource templates for deployment and service.
+    - **`deployment.yaml`**: Template for deploying the application.
+    - **`service.yaml`**: Template for defining the service.
+  - **`values.yaml`**: Default configuration values for the Helm chart.
+
 - **`Jenkinsfile`**:The Jenkins pipeline for continuous integration and delivery (CI/CD).
+
 - **`Kubernetes/`**: Contains Kubernetes manifests for deploying and managing resources in a Kubernetes cluster.
   - **`deployment.yml`**: Deployment configuration for the application.
   - **`ingress.yml`**: Ingress rules for managing external access to the services.
@@ -89,13 +122,29 @@ A simple web application show current time using flask
   - **`pod.yml`**: Pod configuration for the application.
 
   - **`service.yml`**: Service configuration for exposing the application.
+
+- **`monitoring/`**: Contains configurations for monitoring using Prometheus, Loki, and Promtail.
+  - **`config/`**:
+    - **`loki-config.yaml`**: Configuration for Loki.
+    - **`prometheus-config.yaml`**: Configuration for Prometheus.
+    - **`promtail-config.yaml`**: Configuration for Promtail.
+
 - **`nginx.conf`**: Nginx configuration file.
-- **`ReadMe.md`**: Markdown file providing project information (this file).
+
+- **`ReadMe.md`**: Markdown file providing project information (Project documentation.).
+
 - **`requirements.txt`**: List of Python dependencies for the Flask application.
+
 - **`static/`**:Directory containing Image for the Flask application
+
 - **`task.py`**: Main Python file containing the Flask application code.
+
 - **`templates/`**: Directory containing HTML templates for the Flask application.
-  - **`main.tf`**:Main Terraform configuration file.
+  - **`index.html`**: HTML template for displaying the current time.
+
+- **`Terraform/`**: Contains Terraform configurations for infrastructure provisioning.
+  - **`main.tf`**: Main Terraform configuration file.
+
 - **`test_task.py`**: Python script with tests for the Flask application.
 
 ## Prerequisites

@@ -108,7 +108,7 @@ A simple web application show current time using flask
 
 - **`Helm/mychart/`**: Contains Helm chart for managing Kubernetes deployments.
   - **`Chart.yaml`**: Metadata for the Helm chart.
-  
+
   - **`templates/`**: Kubernetes resource templates for deployment and service.
     - **`deployment.yaml`**: Template for deploying the application.
     - **`service.yaml`**: Template for defining the service.
@@ -487,7 +487,7 @@ This pipeline ensures that your application is built, packaged into a Docker con
 
     ![mon_doc_compose](https://github.com/user-attachments/assets/1f4d5b85-1c4a-40da-a667-7894b08fc0dd)
 
-- Run grafana on prometheus ---> **`localhost:9090`** 
+- Run prometheus on ---> **`localhost:9090`** 
  - Check the status of running the app on ---> **`localhost:9090/targets?search=`**
 
 

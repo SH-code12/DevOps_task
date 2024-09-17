@@ -103,10 +103,12 @@ A simple web application show current time using flask
 
 - **`.github/workflows/`**: GitHub Actions workflow configurations for CI/CD.
   - **`action.yml`**: Action for automating tasks.
+
   - **`pytest.yml`**: Pytest configuration for testing.
 
 - **`Helm/mychart/`**: Contains Helm chart for managing Kubernetes deployments.
   - **`Chart.yaml`**: Metadata for the Helm chart.
+  
   - **`templates/`**: Kubernetes resource templates for deployment and service.
     - **`deployment.yaml`**: Template for deploying the application.
     - **`service.yaml`**: Template for defining the service.
@@ -125,9 +127,12 @@ A simple web application show current time using flask
 
 - **`monitoring/`**: Contains configurations for monitoring using Prometheus, Loki, and Promtail.
   - **`config/`**:
+
     - **`loki-config.yaml`**: Configuration for Loki.
+
     - **`prometheus-config.yaml`**: Configuration for Prometheus.
     - **`promtail-config.yaml`**: Configuration for Promtail.
+  - **`docker-compose.yml`**: file defines all the services needed for the monitoring stack. 
 
 - **`nginx.conf`**: Nginx configuration file.
 

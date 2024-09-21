@@ -12,13 +12,13 @@ resource "aws_instance" "web_server" {
   vpc_security_group_ids = [aws_security_group.web_server_sg.id]  # Associate the security group
 
   tags = {
-    Name = "EC2_SP2"
+    Name = "EC2_SP2_v1"
   }
 }
 
 # Define the Security Group resource
 resource "aws_security_group" "web_server_sg" {
-  name        = "EC2_instance_security_group_v6"
+  name        = "EC2_instance_security_group_v8"
   description = "Security group for EC2 instance"
 
   ingress {

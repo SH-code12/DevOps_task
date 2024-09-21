@@ -10,13 +10,12 @@ jobs:
     linter-test:
         runs-on: ubuntu-latest
 
-
         steps:
-            - name: checkout Python 3.11
-              uses: actions/checkout@v4
+            - name: Checkout code
+              uses: actions/checkout@v4  # Correct action for checking out the repository
 
             - name: Set Up Python 3.11
-              uses: actions/setup-python@v5
+              uses: actions/setup-python@v5  # Correct action for setting up Python
               with:
                 python-version: '3.11.6'
                 cache: 'pip'
@@ -26,12 +25,12 @@ jobs:
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
 
-            - name: Tests
+            - name: Run Tests
               run: |
                 python test_task.py
 
             - name: Log in to Docker Hub
-              uses: docker/login-action@v1
+              uses: docker/login-action@v2
               with:
                 username: ${{secrets.DOCKERHUB_USERNAME}}
                 password: ${{secrets.DOCKERHUB_TOKEN}}
@@ -43,4 +42,3 @@ jobs:
               run: |
                 docker build -t ${{secrets.DOCKERHUB_USERNAME}}/$REPOSITORY:$IMAGE_TAG .
                 docker push ${{secrets.DOCKERHUB_USERNAME}}/$REPOSITORY:$IMAGE_TAG
-
